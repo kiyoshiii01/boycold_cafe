@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boycold Cafe - Home</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body.start-page {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1e1e1e; /* Dark coffee background */
+        }
+
+        .start-container {
+            width: 100%;
+            /* Pinaliit ang max-width mula 440px naging 380px */
+            max-width: 380px; 
+            background: #ffffff;
+            /* Pinaliit ang padding sa loob */
+            padding: 35px 25px; 
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo-circle {
+            /* Pinalaki ang logo mula 90px naging 130px */
+            width: 130px;
+            height: 130px;
+            background: url('images/BoyCold logo.png') no-repeat center / contain;
+            background-color: #1e1e1e;
+            border-radius: 50%;
+            /* Pinaliit ang margin sa ilalim ng logo */
+            margin-bottom: 15px; 
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .start-title {
+            color: #1e1e1e;
+            /* Pinaliit ng kaunti ang font ng title */
+            font-size: 1.6rem; 
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .login-btn-container {
+            width: 100%;
+            /* Pinaliit ang margin sa itaas ng button */
+            margin-top: 18px; 
+        }
+
+        .login-btn {
+            display: block;
+            width: 100%;
+            /* Pinaliit ang padding ng button */
+            padding: 12px; 
+            background: #1e1e1e;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 12px rgba(62, 39, 35, 0.3);
+        }
+
+        .login-btn:hover {
+            background: #1e1e1e;
+        }
+
+        .login-btn:active {
+            transform: scale(0.98);
+        }
+
+        .bottom-banner {
+            /* Pinaliit ang margin sa itaas ng banner */
+            margin-top: 15px; 
+            color: #1e1e1e;
+            /* Pinaliit ng kaunti ang font ng banner */
+            font-size: 0.8rem; 
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 400px) {
+            .start-container {
+                padding: 30px 20px;
+                max-width: 92%;
+            }
+            .logo-circle {
+                width: 110px;
+                height: 110px;
+            }
+            .start-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="start-page">
+
+    <div class="start-container">
+        <div class="logo-circle"></div>
+        
+        <h1 class="start-title">
+            BOYCOLD CAFE
+        </h1>
+
+        <div class="login-btn-container">
+            <a href="login.html" class="login-btn">
+                Login
+            </a>
+        </div>
+
+        <div class="bottom-banner">
+            Order ahead • Choose pickup time • Receive confirmation
+        </div>
+    </div>
+
+</body>
+</html>

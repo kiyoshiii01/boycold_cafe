@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boycold Cafe - Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body.form-page {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1e1e1e; /* Bagong background color */
+        }
+
+        .form-box-container {
+            width: 100%;
+            max-width: 340px; /* Mas pinaliit ang box */
+            background: #ffffff;
+            padding: 30px 22px; /* Mas siksik na padding */
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo-circle {
+            width: 120px; /* Mas pinalaki ang logo */
+            height: 120px; /* Mas pinalaki ang logo */
+            background: url('images/BoyCold logo.png') no-repeat center / contain;
+            background-color: #1e1e1e;
+            border-radius: 50%;
+            margin-bottom: 14px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-title {
+            color: #2c1810;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .error-message {
+            background-color: #c62828;
+            color: white;
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin-bottom: 14px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        #loginForm {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .input-group label {
+            color: #1e1e1e;
+            font-weight: 600;
+            font-size: 0.82rem;
+            letter-spacing: 0.3px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid #d7ccc8;
+            border-radius: 8px;
+            background: #faf8f6;
+            color: #333;
+            font-size: 0.92rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #1e1e1e;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(62, 39, 35, 0.15);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #1e1e1e;
+            color: white;
+            border: none;
+            padding: 11px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(62, 39, 35, 0.3);
+            transition: background 0.2s ease, transform 0.1s ease;
+            margin-top: 4px;
+        }
+
+        .submit-btn:hover {
+            background: #1e1e1e;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 380px) {
+            .form-box-container {
+                padding: 25px 18px;
+                max-width: 90%;
+            }
+
+            .logo-circle {
+                width: 105px;
+                height: 105px;
+            }
+
+            .form-title {
+                font-size: 1.35rem;
+            }
+        }
+    </style>
+</head>
+<body class="form-page">
+
+<div class="form-box-container">
+    <div class="logo-circle"></div>
+    <h1 class="form-title">Login</h1>
+    
+    <form id="loginForm">
+        <div class="input-group">
+            <label>User Name</label>
+            <input name="username" placeholder="Enter username" required type="text" autocomplete="username"/>
+        </div>
+        
+        <div class="input-group">
+            <label>Password</label>
+            <input name="password" placeholder="Enter Password" required type="password" autocomplete="current-password"/>
+        </div>
+        
+        <div>
+            <button class="submit-btn" type="submit">
+                Log in
+            </button>
+        </div>
+        <p style="font-size:.75rem;color:#888;text-align:center">Demo: admin / admin123, staff / staff123, cashier / cashier123</p>
+    </form>
+</div>
+
+<script>
+const demoUsers = {
+    'admin':   { password: 'admin123',   name: 'Admin',         role: 'Admin' },
+    'staff':   { password: 'staff123',   name: 'Staff Member',  role: 'Staff' },
+    'cashier': { password: 'cashier123', name: 'Cashier User',  role: 'Cashier' }
+};
+
+document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const username = this.querySelector('[name="username"]').value.trim().toLowerCase();
+    const password = this.querySelector('[name="password"]').value;
+    const account = demoUsers[username];
+
+    const oldError = document.querySelector('.error-message');
+    if (oldError) oldError.remove();
+
+    if (!account || account.password !== password) {
+        const p = document.createElement('div');
+        p.className = 'error-message';
+        p.textContent = 'Invalid username or password.';
+        this.prepend(p);
+        return;
+    }
+
+    const { password: _pw, ...user } = account; 
+    user.username = username;
+    localStorage.setItem('boycoldUser', JSON.stringify(user));
+    location.href = 'dashboard.html';
+});
+</script>
+</body>
+</html>
